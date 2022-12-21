@@ -3,7 +3,7 @@
     public interface ITableToExcelConverter
     {
         /// <summary>
-        /// Gets a table in form of a csv file/string and an excel template. 
+        /// Gets a DataTable which represents data from a database. 
         /// Fills this template with data from the table. Returns the generated excel file
         /// </summary>
         /// <param name="dataTable"></param>

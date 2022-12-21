@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MsBcConverter.Interface
+﻿namespace MsBcConverter.Interface
 {
-    internal interface ITableReader
+    public interface ITableReader
     {
     }
 }

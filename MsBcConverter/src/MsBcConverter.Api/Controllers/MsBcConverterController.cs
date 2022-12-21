@@ -19,8 +19,9 @@ namespace MsBcConverter.Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("v1/conversion_result")]
-        public string Get()
+        public string Get([FromQuery] string[] ids)
         {
+            _logger.LogInformation($"Ids: {ids.Aggregate((a, b) => a + "," + b)}");
             return "Result";
         }
     }
