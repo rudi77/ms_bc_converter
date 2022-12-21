@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace MsBcConverter.Api.Controllers
 {
     [ApiController]
-    [Route("v1/converter_result")]
     public class MsBcConverterResultController : ControllerBase
     {
         private readonly ILogger _logger;
@@ -13,8 +12,14 @@ namespace MsBcConverter.Api.Controllers
             _logger = logProvider.CreateLogger(nameof(MsBcConverterResultController));
         }
 
-        [HttpPost(Name = "PostMsBcConverter")]
-        public string Post()
+        /// <summary>
+        /// Takes as input a list of 'export table ids' and returns a list of download links
+        /// to the generated excel files
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("v1/conversion_result")]
+        public string Get()
         {
             return "Result";
         }
