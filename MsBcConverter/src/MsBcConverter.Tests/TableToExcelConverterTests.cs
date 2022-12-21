@@ -35,6 +35,7 @@ namespace MsBcConverter.Tests
                 Header = header,
                 Rows = rows
             };
+
             return dataTable;
         }
     }
