@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..</DockerfileContext>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<VersionSuffix Condition=" '$(MajorId)' == '' Or '$(MinorId)' == '' Or '$(BuildId)' == '' Or '$(RevisionId)' == '' ">1.0.$([System.DateTime]::UtcNow.ToString(yy))$([System.DateTime]::UtcNow.DayOfYear.ToString()).$([System.DateTime]::UtcNow.ToString(HHmm))</VersionSuffix>
+		<VersionSuffix Condition=" '$(MajorId)' != '' And '$(MinorId)' != '' And '$(BuildId)' != '' And '$(RevisionId)' != '' ">1.0.$(BuildId).$(RevisionId)</VersionSuffix>
+		<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
+		<AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
+		<Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
+		<Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
+		<FileVersion>$(VersionSuffix)</FileVersion>
+		<ProductVersion>$(VersionSuffix)</ProductVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="DTO\**" />
+	  <Content Remove="DTO\**" />
+	  <EmbeddedResource Remove="DTO\**" />
+	  <None Remove="DTO\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="prometheus-net.AspNetCore" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MsBcConverter.Business\MsBcConverter.Business.csproj" />
+	  <ProjectReference Include="..\MsBcConverter.Interface\MsBcConverter.Interface.csproj" />
+	</ItemGroup>
+
+</Project>
